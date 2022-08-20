@@ -8,6 +8,7 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 // TODO: Add and configure workbox plugins for a service worker and manifest file.
 // TODO: Add CSS loaders and babel to webpack.
 
+//this part is essentially boilerplate. i think this will tend to stay the same unless you are someone who changes index names and server names and whatnot
 module.exports = () => {
   return {
     mode: 'development',
@@ -30,6 +31,31 @@ module.exports = () => {
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
+      }),
+      //next we must create the webpack manifest. this is found on the docs for the webpack config js; 
+      //it looks like we are missing some things from the professor demo though. the docs online nearly match except we need to add fingerprints and inject: true. 
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        //here we add the full name of the application (just another text editor) and provide a short-name, acronym style
+        name: 'Just Another Text Editor',
+        short_name: 'J.A.T.E.',
+        //now we can add a description for people seeking to install
+        description: 'This app is used to install an online/offline text editor.',
+        //then we provide colors. im not changing these from the class demo. maybe ill change my mind later, though
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        //these two paths should be slashed, not including a dot, although they may function the same
+        start_url: '/',
+        publicPath: '/',
+        icons: [
+          {
+            //here we can specify our webpack to include the provided logo and scale it properly depending on size requirements
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
       }),
     ],
 

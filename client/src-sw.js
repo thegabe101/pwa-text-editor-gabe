@@ -7,6 +7,8 @@ const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 
 precacheAndRoute(self.__WB_MANIFEST);
 
+//need to add asset caching here. still reading up on how to do that. 
+
 const pageCache = new CacheFirst({
   cacheName: 'page-cache',
   plugins: [

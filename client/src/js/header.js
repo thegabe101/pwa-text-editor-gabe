@@ -1,3 +1,5 @@
+//template literal to render the jate acronym
+
 const header = `
 /*
        _____  ____________
