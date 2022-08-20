@@ -25,14 +25,15 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'JATE'
+        //we don't necessarily need this parameter, but it can't hurt as long as it matches our json
+        title: 'jate'
       }),
-      //here we build the server worker from the src folder and direct it to use that folder
+      //here we build the service worker from the src folder and direct it to use that folder
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
-      //next we must create the webpack manifest. this is found on the docs for the webpack config js; 
+      //next we must create the webpack manifest json. this is found on the docs for the webpack config js; 
       //it looks like we are missing some things from the professor demo though. the docs online nearly match except we need to add fingerprints and inject: true. 
       new WebpackPwaManifest({
         fingerprints: false,
@@ -46,8 +47,8 @@ module.exports = () => {
         background_color: '#225ca3',
         theme_color: '#225ca3',
         //these two paths should be slashed, not including a dot, although they may function the same
-        start_url: '/',
-        publicPath: '/',
+        start_url: './',
+        publicPath: './',
         icons: [
           {
             //here we can specify our webpack to include the provided logo and scale it properly depending on size requirements

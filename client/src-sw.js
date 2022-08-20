@@ -29,4 +29,16 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
-registerRoute();
+
+//it is important that we define what we WANT to cache, i.e. not everything, for the sake of speed preservation.
+//in this case, we want to cache JS and CSS files, so we define those using style, script, and we also cache our service worker
+registerRoute(({ request }) => ['style', 'script', 'worker'].includes(request.destination),
+  new StaleWhileRevalidate({
+    cacheName: 'asset-cache',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+    ],
+  })
+);
