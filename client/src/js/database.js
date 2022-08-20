@@ -1,5 +1,7 @@
 import { openDB } from 'idb';
 
+//noticing right away that our package names are not matching our casing in these jate references, so going to change those to lowercase. 
+
 const initdb = async () =>
   openDB('jate', 1, {
     upgrade(db) {

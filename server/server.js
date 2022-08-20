@@ -1,3 +1,5 @@
+//don't believe we should touch the server here. i'm writing down by hand where i think we need to change things because i find this work flow for PWA a bit confusing. will also follow pre-written comments
+
 const express = require('express');
 
 const app = express();
