@@ -32,13 +32,18 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 //it is important that we define what we WANT to cache, i.e. not everything, for the sake of speed preservation.
 //in this case, we want to cache JS and CSS files, so we define those using style, script, and we also cache our service worker
-registerRoute(({ request }) => ['style', 'script', 'worker'].includes(request.destination),
+registerRoute(
+  ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
   new StaleWhileRevalidate({
     cacheName: 'asset-cache',
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
       }),
+      new ExpirationPlugin({
+        maxEntries: 200,
+        maxAgeSeconds: 30 * 24 * 60 * 60,
+      })
     ],
   })
 );

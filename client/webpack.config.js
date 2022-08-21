@@ -11,12 +11,14 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 //this part is essentially boilerplate. i think this will tend to stay the same unless you are someone who changes index names and server names and whatnot
 module.exports = () => {
   return {
+    //here we direct our webpacks installation for future offline scenarios. we call the main and the install pack from src for each purpose
     mode: 'development',
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
     },
     output: {
+      //here we output our bundle and directory, which will be dist for distribution from the webpack
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
@@ -47,8 +49,8 @@ module.exports = () => {
         background_color: '#225ca3',
         theme_color: '#225ca3',
         //these two paths should be slashed, not including a dot, although they may function the same
-        start_url: './',
-        publicPath: './',
+        start_url: '/',
+        publicPath: '/',
         icons: [
           {
             //here we can specify our webpack to include the provided logo and scale it properly depending on size requirements

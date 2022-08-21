@@ -28,7 +28,7 @@ This project involved refactoring code to create a Progressive Web App that coul
 
 - The user must open a node/clp and run "npm install." Doing so will ensure all packages and dev packages are installed.
 
-- In the root folder, the user can then run "npm run build" in order to build the webpack and serve the entire client folder locally; they would then need to run the server (localhost3000) by cding to the server and running the server as a node using node server.js. Alternatively, the user can combine these steps by running "npm run start," which will both build the webpack, start the service worker, and run the server.
+- In the root folder, the user can then run "npm run build" in order to build the webpack and serve the entire client folder locally; they would then need to run the server (localhost3000) by cding to the server and running the server as a node using node server.js. Alternatively, the user can combine these steps by running "npm run start:dev," which will build the webpack, start the service worker, and run the server.
 
 - Should a user want to use this application over the web, they may simply navigate to its deployed heroku web link at:
 
